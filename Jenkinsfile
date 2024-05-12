@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'GitHub-Https', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                     sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                     sh "docker push harrissalimo/dtc_devops:1.0"
                 }

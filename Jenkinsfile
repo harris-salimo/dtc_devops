@@ -13,7 +13,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "docker run -d --name dtc_devops dtc_devops"
+                sh "docker pull harrissalimo/dtc_devops:latest"
+                // sh "docker run -d --name dtc_devops dtc_devops"
                 sh "docker swarm update"
             }
         }

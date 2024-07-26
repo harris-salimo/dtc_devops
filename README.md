@@ -1,9 +1,33 @@
 # Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Projet frontend.
 
-## Recommended Setup
+## Deploiement
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+- Installez Jenkins selon cette [instruction](https://www.jenkins.io/doc/book/installing/docker/)
 
-- Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
+- Créez 2 containers pour constituer un cluster
+
+```bash
+docker run -d --privileged --name manager docker:dind
+docker run -d --privileged --name worker docker:dind
+```
+
+- Dans manager, initialisez swarm
+
+```bash
+docker exec -it manager sh
+docker swarm init
+# copier la commande donnée pour joindre le worker
+```
+
+- Joinez le worker au manager
+
+```bash
+docker exec -it worker sh
+# coller la commande copiée et lancez
+```
+
+- Configurez un environnement comme indiqué dans le fichier [configuration.pdf](./configuration.pdf)
+
+- Lancez le build depuis votre interface admin jenkins

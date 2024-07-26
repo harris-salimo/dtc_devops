@@ -13,9 +13,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "docker pull harrissalimo/dtc_devops:latest"
-                // sh "docker run -d --name dtc_devops dtc_devops"
-                sh "docker swarm update"
+                sh "docker stack deploy -c https://raw.githubusercontent.com/harris-salimo/dtc_devops/master/compose.yml dtc_devops"
             }
         }
     }

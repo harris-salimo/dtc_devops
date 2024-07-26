@@ -1,0 +1,5 @@
+services:
+  web:
+    image: harrissalimo/dtc_devops:latest
+    ports:
+      - "80:80"
